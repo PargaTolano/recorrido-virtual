@@ -1,3 +1,4 @@
-dist/
+dist/bundle.js
+dist/bundle.js.LICENSE.txt
 node_modules/
 .vscode/

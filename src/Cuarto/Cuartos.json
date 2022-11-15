@@ -1,0 +1,64 @@
+{
+    "Entremedio": {
+        "Cuarto": {
+            "EntradaComeSanoFisica": {
+                "Fondo": "EntradaComeSanoFisica.jpg",
+                "Conexiones": [{
+                        "Nombre": "EntradaFisicaAstronomia",
+                        "Label": "Fisica y Astronomía",
+                        "Descripcion": "Descripcion de fisica y astronomía",
+                        "Posicion": {
+                            "x": -0.43,
+                            "y": 0,
+                            "z": -15.99
+                        }
+                    },
+                    {
+                        "Nombre": "EntradaComeSano",
+                        "Label": "Come bien, juega bien",
+                        "Descripcion": "descripcion de come bien, juega bien",
+                        "Posicion": {
+                            "x": -13.36,
+                            "y": 0,
+                            "z": -8.79
+                        }
+                    },
+                    {
+                        "Nombre": "Estacionamiento",
+                        "Label": "Estacionamiento",
+                        "Descripcion": "descripcion estacionamiento",
+                        "Posicion": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 16
+                        }
+                    }
+                ],
+                "Exposiciones": [{}]
+            }
+        }
+    },
+    "ComeSano": {
+        "Cuarto": {
+            "EntradaComeSano": {
+                "Fondo": "ComeSanoEntrada.jpg",
+                "Conexiones": [{
+                    "Nombre": "EntradaComeSanoFisica",
+                    "Posicion": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 16
+                    }
+                }],
+                "Exposiciones": [{
+                    "Nombre": "CarreraDelBuenComer",
+                    "Posicion": {
+                        "x": 8,
+                        "y": 0,
+                        "z": 8
+                    }
+                }]
+            }
+        }
+    }
+}

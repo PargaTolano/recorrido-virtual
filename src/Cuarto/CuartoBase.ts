@@ -4,6 +4,8 @@ import { ICuarto } from "./ICuarto";
 export class CuartoBase implements ICuarto {
     
     private exposiciones: Array<ExposicionBase>;
+    private background: String;
+    private cuartos: Array<JSON>;
 
     constructor(){
         this.exposiciones = new Array<ExposicionBase>();

@@ -1,0 +1,11 @@
+{
+
+    "WaypointExteriorRadius":0.4,
+    "WaypointCenterRadius":0.3,
+
+    "WaypointExteriorOpacity":0.5,
+    "WaypointCenterOpacity": 1.0,
+
+    "WaypointCenterColor":"0xffffff",
+    "WaypointExteriorColor":"0xffffff"
+}

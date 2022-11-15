@@ -1,4 +1,5 @@
 
 export default {
-    canvasId: "museo-canvas"
+    canvasId: "museo-canvas",
+    labelsID: "labels"
 };
