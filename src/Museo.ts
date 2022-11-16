@@ -30,7 +30,7 @@ const {
   WaypointCenterColor,
 } = require("../const.json");
 
-const Seccion = require("./Cuarto/Cuartos.json");
+const Secciones = require("./Cuarto/Cuartos.json");
 
 export class Museo implements ICuartoEventListener {
   // Singleton Stuff
@@ -53,7 +53,6 @@ export class Museo implements ICuartoEventListener {
   private renderer: WebGLRenderer;
   private mouse: Vector2;
   private raycastec: Raycaster;
-  private cuartoActual: CuartoBase;
   private waypointsArray: Array<any> = [];
   private waypointHoverIndex: any;
   private canvas: HTMLCanvasElement;
@@ -85,10 +84,37 @@ export class Museo implements ICuartoEventListener {
     this.mouse = new Vector2();
     this.raycastec = new Raycaster();
 
-    //Prueba de como seria un punto de cambio de camara.
-    const waypointMeshCenter = new SphereGeometry(WaypointCenterRadius, 6, 10);
-    const waypointMeshExterior = new SphereGeometry(WaypointExteriorRadius, 6, 10);
+    //Le pasamos la seccion y el cuarto que vamos a instanciar
+    this.setScene("ComeSano", "EntradaComerSano");
 
+
+    this.initControls();
+  }
+
+  private updateLabels() {
+    const tempV = new Vector3();
+    for (let i = 0; i < this.targetList.length; i++) {
+
+      const { object, elem } = this.targetList[i];
+      if (elem === undefined) return;
+
+      object.updateWorldMatrix(true, false);
+      object.getWorldPosition(tempV);
+
+      tempV.project(this.camera);
+
+      const x = (tempV.x * .5 + .5) * this.canvas.clientWidth;
+      const y = (tempV.y * -.5 + .5) * this.canvas.clientHeight;
+      elem.style.transform = `translate(-50%, -200%) translate(${x}px,${y}px)`;
+    }
+  }
+
+  private setScene(Seccion: any, Cuarto: any) {
+
+    //Creacion de Geometria y Materiales
+
+    const waypointMeshCenter = new SphereGeometry(WaypointCenterRadius, 10, 10);
+    const waypointMeshExterior = new SphereGeometry(WaypointExteriorRadius, 10, 10);
     const waypointTextureCenter = new MeshBasicMaterial({
       color: WaypointCenterColor,
       transparent: true,
@@ -100,14 +126,17 @@ export class Museo implements ICuartoEventListener {
       opacity: WaypointExteriorOpacity,
     });
 
-    //Agarramos las conexiones de solo este cuarto
-    const Conexiones = Seccion.Entremedio.Cuarto.EntradaComeSanoFisica.Conexiones;
+    //Agarramos el cuarto del JSON y sacamos sus conexiones con otros cuartos, exposiciones y el fondo. 
+    const CuartoActual = Secciones[Seccion].Cuarto[Cuarto]
+    const Conexiones = CuartoActual.Conexiones;
+    const Fondo = CuartoActual.Fondo;
 
     //Instanciamos los puntos de ida de el cuarto
     for (let i = 0; i < Conexiones.length; i++) {
       //Creamos los meshes con la geometria y el material ya creados
       const waypointCenter = new Mesh(waypointMeshCenter, waypointTextureCenter);
       const waypointExterior = new Mesh(waypointMeshExterior, waypointTextureExterior);
+
       waypointExterior.name = "waypoint";
       waypointExterior.add(waypointCenter);
 
@@ -119,14 +148,19 @@ export class Museo implements ICuartoEventListener {
       waypointExterior.getWorldPosition(tempV);
       tempV.project(this.camera);
 
-      let x = (tempV.x * .5 + .5) * canvas.clientWidth;
-      let y = (tempV.y * -.5 + .5) * canvas.clientHeight;
+      let x = (tempV.x * .5 + .5) * this.canvas.clientWidth;
+      let y = (tempV.y * -.5 + .5) * this.canvas.clientHeight;
 
-      let elem = document.createElement('div');
-      elem.textContent = Conexiones[i].Label;
-      document.querySelector('#labels').appendChild(elem);
-      elem.style.transform = `translate(-50%, -170%) translate(${x}px,${y}px)`;
-      elem.style.opacity = '0';
+      let elem :any;
+      if (Conexiones[i].Label != "") {
+        //console.log(`element created in ${Conexiones[i].Nombre}`)
+        elem = document.createElement('div');
+        elem.textContent = Conexiones[i].Label;
+        document.querySelector('#labels').appendChild(elem);
+        elem.style.transform = `translate(-50%, -170%) translate(${x}px,${y}px)`;
+        elem.style.opacity = '0';
+      }
+
       const waypoint = {
         "Index": i,
         "Nombre": Conexiones[i].Nombre,
@@ -166,30 +200,13 @@ export class Museo implements ICuartoEventListener {
       this.waypointsArray.push(waypoint);
       this.scene.add(waypointExterior);
     }
-
-
-    this.setSkydome();
-    this.initControls();
+    //console.log(this.waypointsArray);
+    this.setSkydome(Seccion, Fondo);
   }
 
-  private updateLabels() {
-    const tempV = new Vector3();
-    for (let i = 0; i < this.targetList.length; i++) {
-      const { object, elem } = this.targetList[i];
-      object.updateWorldMatrix(true, false);
-      object.getWorldPosition(tempV);
-
-      tempV.project(this.camera);
-
-      const x = (tempV.x * .5 + .5) * this.canvas.clientWidth;
-      const y = (tempV.y * -.5 + .5) * this.canvas.clientHeight;
-      elem.style.transform = `translate(-50%, -200%) translate(${x}px,${y}px)`;
-    }
-  }
-
-  private setSkydome() {
+  private setSkydome(Seccion: String, Background: String) {
     const SkydomeMesh = new SphereGeometry(17, 32, 32);
-    const SkydomeTexture = new TextureLoader().load("../Resources/Backgrounds/Entremedios/EntradaComeSanoFisica.jpg");
+    const SkydomeTexture = new TextureLoader().load(`../Resources/Backgrounds/${Seccion}/${Background}`);
     SkydomeTexture.wrapS = RepeatWrapping;
     SkydomeTexture.repeat.x = - 1;
     const SkydomeMaterial = new MeshBasicMaterial({
@@ -224,6 +241,7 @@ export class Museo implements ICuartoEventListener {
       if (intersects[i].object.name === "waypoint") {
         this.isMouseOverWaypoint = true;
         this.waypointHoverIndex = intersects[i].object.userData.waypoint.Index;
+        if (intersects[i].object.userData.waypoint.ElementoDom != undefined) 
         intersects[i].object.userData.waypoint.ElementoDom.style.opacity = '1';
         if (!this.waypointAnimationState)
           intersects[i].object.userData.waypoint.AnimationIn.start();
@@ -238,6 +256,7 @@ export class Museo implements ICuartoEventListener {
         this.waypointsArray[index].AnimationOut.start();
       this.waypointHoverIndex = null;
       for (let i = 0; i < this.waypointsArray.length; i++) {
+        if (this.waypointsArray[i].ElementoDom === undefined) return;
         this.waypointsArray[i].ElementoDom.style.opacity = '0';
       }
     }

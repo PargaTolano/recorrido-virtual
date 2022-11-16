@@ -14,4 +14,6 @@ La carpeta de dist recibira constantemente el bundle de la aplicacion, pero no s
 
 ```
   npm run dev
+  
 ```
+

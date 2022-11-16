@@ -1,12 +1,11 @@
 {
     "Entremedio": {
         "Cuarto": {
-            "EntradaComeSanoFisica": {
-                "Fondo": "EntradaComeSanoFisica.jpg",
+            "EntradaComerSanoFisica": {
+                "Fondo": "EntradaComerSanoFisica.jpg",
                 "Conexiones": [{
                         "Nombre": "EntradaFisicaAstronomia",
                         "Label": "Fisica y Astronomía",
-                        "Descripcion": "Descripcion de fisica y astronomía",
                         "Posicion": {
                             "x": -0.43,
                             "y": 0,
@@ -14,9 +13,8 @@
                         }
                     },
                     {
-                        "Nombre": "EntradaComeSano",
+                        "Nombre": "EntradaComerSano",
                         "Label": "Come bien, juega bien",
-                        "Descripcion": "descripcion de come bien, juega bien",
                         "Posicion": {
                             "x": -13.36,
                             "y": 0,
@@ -26,7 +24,6 @@
                     {
                         "Nombre": "Estacionamiento",
                         "Label": "Estacionamiento",
-                        "Descripcion": "descripcion estacionamiento",
                         "Posicion": {
                             "x": 0,
                             "y": 0,
@@ -40,18 +37,34 @@
     },
     "ComeSano": {
         "Cuarto": {
-            "EntradaComeSano": {
-                "Fondo": "ComeSanoEntrada.jpg",
+            "EntradaComerSano": {
+                "Fondo": "EntradaComerSano.jpg",
                 "Conexiones": [{
-                    "Nombre": "EntradaComeSanoFisica",
-                    "Posicion": {
-                        "x": 0,
-                        "y": 0,
-                        "z": 16
+                        "Nombre": "EntradaComerSanoFisica",
+                        "Label": "Entrada de Come sano y Física y Astornomía",
+                        "Posicion": {
+                            "x": 15.9,
+                            "y": 0,
+                            "z": -1.76
+                        }
+                    },
+                    {
+                        "Nombre": "ComerSanoPrincipal",
+                        "Label": "",
+                        "Posicion": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -16
+                        }
                     }
-                }],
-                "Exposiciones": [{
-                    "Nombre": "CarreraDelBuenComer",
+                ],
+                "Exposiciones": [{}]
+            },
+            "ComerSanoPrincipal":{
+                "Fondo":"ComerSanoPrincipal.jpg",
+                "Conexiones":[{
+                    "Nombre": "EntradaComerSano",
+                    "Label": "",
                     "Posicion": {
                         "x": 8,
                         "y": 0,
