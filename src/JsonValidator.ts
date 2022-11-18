@@ -1,16 +1,18 @@
 const Cuartos = require("./Cuarto/Cuartos.json");
+import { TextureLoader } from "three";
 /*Este archivo checa varias cosas:
     1.- Si los nombres que estan en las conexiones existen en los cuartos
     2.- Si las conexiones tienen nombre
     3.- Si las conexiones tienen posicion, sus coordenadas esten en minusculas con las letras correctas(x, y, z) y que no se repitan
     4.- Que los cuartos tengan almenos una conexión 
-    5.- Que los fondos existan en la carpeta de Resources*
+    5.- Que los fondos existan en la carpeta de Resources
 */
 export function JsonValidator() {
 
     try {
         console.log(`---------------------CUARTOS JSON DEBUG START---------------------`)
         console.time('CUARTOS JSON DEBUG TIME');
+
         let Nombres: Array<String> = [];
 
         //LLenamos el array de arriba con los nombres de cada cuarto
@@ -25,7 +27,8 @@ export function JsonValidator() {
         Object.entries(Cuartos).forEach(([Seccion, valueSeccion], index) => {
             //@ts-ignore
             Object.entries(valueSeccion.Cuarto).forEach(([Cuarto, valueCuarto], index) => {
-
+                //@ts-ignore
+                const backgroundCheck = new TextureLoader().load(`../Resources/Backgrounds/${Seccion}/${valueCuarto.Fondo}`);
                 let tieneConexiones: Boolean = true;
                 //validamos si el cuarto tien eal menos una conexión
                 //@ts-ignore
@@ -89,7 +92,7 @@ export function JsonValidator() {
                             console.error(`En la seccion "${Seccion}" en el cuarto "${Cuarto}", la conexión "${ConexionActual.Nombre}" tiene una posicion invalida`)
                         }
                     }
-                }else{
+                } else {
                     console.error(`En la seccion "${Seccion}" en el cuarto "${Cuarto}" debe de haber por lo menos una conexión`);
                 }
 

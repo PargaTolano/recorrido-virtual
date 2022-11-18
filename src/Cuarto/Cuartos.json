@@ -1,10 +1,12 @@
 {
-    "Entremedio": {
+    "Entremedios": {
         "Cuarto": {
             "EntradaComerSanoFisica": {
                 "Fondo": "EntradaComerSanoFisica.jpg",
-                "Conexiones": [{
+                "Conexiones": [
+                    {
                         "Nombre": "EntradaFisicaAstronomia",
+                        "Seccion": "FisicaYAstronomia",
                         "Label": "Fisica y Astronomía",
                         "Posicion": {
                             "x": -0.43,
@@ -15,6 +17,7 @@
                     {
                         "Nombre": "EntradaComerSano",
                         "Label": "Come bien, juega bien",
+                        "Seccion": "ComerSano",
                         "Posicion": {
                             "x": -13.36,
                             "y": 0,
@@ -24,6 +27,7 @@
                     {
                         "Nombre": "Estacionamiento",
                         "Label": "Estacionamiento",
+                        "Seccion": "Entremedios",
                         "Posicion": {
                             "x": 0,
                             "y": 0,
@@ -35,13 +39,15 @@
             }
         }
     },
-    "ComeSano": {
+    "ComerSano": {
         "Cuarto": {
             "EntradaComerSano": {
                 "Fondo": "EntradaComerSano.jpg",
-                "Conexiones": [{
+                "Conexiones": [
+                    {
                         "Nombre": "EntradaComerSanoFisica",
                         "Label": "Entrada de Come sano y Física y Astornomía",
+                        "Seccion": "Entremedios",
                         "Posicion": {
                             "x": 15.9,
                             "y": 0,
@@ -51,6 +57,7 @@
                     {
                         "Nombre": "ComerSanoPrincipal",
                         "Label": "",
+                        "Seccion": "ComerSano",
                         "Posicion": {
                             "x": 0,
                             "y": 0,
@@ -62,8 +69,10 @@
             },
             "ComerSanoPrincipal":{
                 "Fondo":"ComerSanoPrincipal.jpg",
-                "Conexiones":[{
+                "Conexiones":[
+                    {
                     "Nombre": "EntradaComerSano",
+                    "Seccion": "ComerSano",
                     "Label": "",
                     "Posicion": {
                         "x": 8,

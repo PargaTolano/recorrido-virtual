@@ -10,7 +10,8 @@ import {
   Vector2,
   Raycaster,
   Vector3,
-  DoubleSide,
+  Object3D,
+  BackSide,
 } from "three";
 import { Tween, update, Easing } from "@tweenjs/tween.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -28,6 +29,7 @@ const {
   WaypointCenterOpacity,
   WaypointExteriorOpacity,
   WaypointCenterColor,
+  WaypointExteriorColor
 } = require("../const.json");
 
 const Secciones = require("./Cuarto/Cuartos.json");
@@ -52,6 +54,7 @@ export class Museo implements ICuartoEventListener {
   private camera: PerspectiveCamera;
   private renderer: WebGLRenderer;
   private mouse: Vector2;
+  private fondoActual: MeshBasicMaterial;
   private raycastec: Raycaster;
   private waypointsArray: Array<any> = [];
   private waypointHoverIndex: any;
@@ -59,6 +62,13 @@ export class Museo implements ICuartoEventListener {
   private targetList: Array<any> = [];
   private isMouseOverWaypoint: Boolean = false;
   private waypointAnimationState: Boolean = false;
+  private skydome: Mesh;
+
+  private waypointMeshCenter: SphereGeometry;
+  private waypointMeshExterior: SphereGeometry;
+  private waypointTextureCenter: MeshBasicMaterial;
+  private waypointTextureExterior: MeshBasicMaterial;
+
 
   //metodos
   public Inicializar(canvas: HTMLCanvasElement) {
@@ -84,11 +94,38 @@ export class Museo implements ICuartoEventListener {
     this.mouse = new Vector2();
     this.raycastec = new Raycaster();
 
+    //Intanciamos la geometria que vamos a usar
+    const SkydomeMesh = new SphereGeometry(17, 32, 32);
+    this.fondoActual = new MeshBasicMaterial({
+      color: 0xffffff,
+      side: BackSide
+    });
+
+    this.waypointMeshCenter = new SphereGeometry(WaypointCenterRadius, 10, 10);
+    this.waypointMeshExterior = new SphereGeometry(WaypointExteriorRadius, 10, 10);
+    this.waypointTextureCenter = new MeshBasicMaterial({
+      color: WaypointCenterColor,
+      transparent: true,
+      opacity: WaypointCenterOpacity,
+    });
+    this.waypointTextureExterior = new MeshBasicMaterial({
+      color: WaypointExteriorColor,
+      transparent: true,
+      opacity: WaypointExteriorOpacity,
+    });
+
+    this.skydome = new Mesh(SkydomeMesh, this.fondoActual);
+    this.scene.add(this.skydome);
     //Le pasamos la seccion y el cuarto que vamos a instanciar
-    this.setScene("ComeSano", "EntradaComerSano");
+    this.setScene("Entremedios", "EntradaComerSanoFisica");
+    
+    //Inicio de controladores
+    var controls = new OrbitControls(this.camera, this.renderer.domElement);
+    controls.minDistance = 1;
+    controls.maxDistance = 10;
+    controls.panSpeed = 0;
+    controls.rotateSpeed = -0.2;
 
-
-    this.initControls();
   }
 
   private updateLabels() {
@@ -111,20 +148,20 @@ export class Museo implements ICuartoEventListener {
 
   private setScene(Seccion: any, Cuarto: any) {
 
+    //Eliminamos los anteriores Waypoints y Meshes
+    for (let i = 0; i < this.targetList.length; i++) {
+      this.scene.remove(this.targetList[i].object);
+      if(this.targetList[i].elem !== undefined ){
+        this.targetList[i].elem.remove();
+      }
+      
+    }
+
+    this.targetList = [];
+    console.log(this.targetList);
     //Creacion de Geometria y Materiales
 
-    const waypointMeshCenter = new SphereGeometry(WaypointCenterRadius, 10, 10);
-    const waypointMeshExterior = new SphereGeometry(WaypointExteriorRadius, 10, 10);
-    const waypointTextureCenter = new MeshBasicMaterial({
-      color: WaypointCenterColor,
-      transparent: true,
-      opacity: WaypointCenterOpacity,
-    });
-    const waypointTextureExterior = new MeshBasicMaterial({
-      color: 0xffffff,
-      transparent: true,
-      opacity: WaypointExteriorOpacity,
-    });
+
 
     //Agarramos el cuarto del JSON y sacamos sus conexiones con otros cuartos, exposiciones y el fondo. 
     const CuartoActual = Secciones[Seccion].Cuarto[Cuarto]
@@ -133,27 +170,32 @@ export class Museo implements ICuartoEventListener {
 
     //Instanciamos los puntos de ida de el cuarto
     for (let i = 0; i < Conexiones.length; i++) {
-      //Creamos los meshes con la geometria y el material ya creados
-      const waypointCenter = new Mesh(waypointMeshCenter, waypointTextureCenter);
-      const waypointExterior = new Mesh(waypointMeshExterior, waypointTextureExterior);
 
+      //Creamos los meshes con la geometria y el material ya creados
+      const waypointCenter = new Mesh(this.waypointMeshCenter, this.waypointTextureCenter);
+      const waypointExterior = new Mesh(this.waypointMeshExterior, this.waypointTextureExterior);
+
+      //Hacemos que su nombre sea waypoint      
       waypointExterior.name = "waypoint";
+
+      //Hacemos waypoint exerior padre de waypoint center
       waypointExterior.add(waypointCenter);
 
+      //Lo ponemos en la posicion 
       const posicion = Conexiones[i].Posicion;
       waypointExterior.position.set(posicion.x, posicion.y, posicion.z);
 
+      //Si tiene label se calcula su posicion en la pantalla
       const tempV = new Vector3();
       waypointExterior.updateWorldMatrix(true, false);
       waypointExterior.getWorldPosition(tempV);
       tempV.project(this.camera);
-
       let x = (tempV.x * .5 + .5) * this.canvas.clientWidth;
       let y = (tempV.y * -.5 + .5) * this.canvas.clientHeight;
 
-      let elem :any;
+      //Y le hacemos su elemento div con su label
+      let elem: any;
       if (Conexiones[i].Label != "") {
-        //console.log(`element created in ${Conexiones[i].Nombre}`)
         elem = document.createElement('div');
         elem.textContent = Conexiones[i].Label;
         document.querySelector('#labels').appendChild(elem);
@@ -161,8 +203,10 @@ export class Museo implements ICuartoEventListener {
         elem.style.opacity = '0';
       }
 
+      //Guardamos info en un objeto waypoint
       const waypoint = {
         "Index": i,
+        "Seccion": Conexiones[i].Seccion,
         "Nombre": Conexiones[i].Nombre,
         "Label": Conexiones[i].Label,
         "Descripcion": Conexiones[i].Descripcion,
@@ -191,37 +235,36 @@ export class Museo implements ICuartoEventListener {
           })
       }
 
+      //y lo guardamos en el mesh
       waypointExterior.userData.waypoint = waypoint;
       const waypointInfo = {
         "object": waypointExterior,
         "elem": elem
       }
+      //los agregamos a los arreglos
       this.targetList.push(waypointInfo);
       this.waypointsArray.push(waypoint);
       this.scene.add(waypointExterior);
     }
-    //console.log(this.waypointsArray);
-    this.setSkydome(Seccion, Fondo);
-  }
 
-  private setSkydome(Seccion: String, Background: String) {
-    const SkydomeMesh = new SphereGeometry(17, 32, 32);
-    const SkydomeTexture = new TextureLoader().load(`../Resources/Backgrounds/${Seccion}/${Background}`);
+    //Ponemos el fondo
+    const SkydomeTexture = new TextureLoader().load(`../Resources/Backgrounds/${Seccion}/${Fondo}`);
     SkydomeTexture.wrapS = RepeatWrapping;
     SkydomeTexture.repeat.x = - 1;
-    const SkydomeMaterial = new MeshBasicMaterial({
-      map: SkydomeTexture,
-      side: DoubleSide
-    });
-    const skydome = new Mesh(SkydomeMesh, SkydomeMaterial);
-    this.scene.add(skydome);
+    this.fondoActual.map = SkydomeTexture;
 
   }
 
-  private showWaypointInfo() {
 
+  public onMouseClick(e: MouseEvent) {
+    this.raycastec.setFromCamera(this.mouse, this.camera);
+    const intersects: any = this.raycastec.intersectObjects(this.scene.children);
+    for (let i = 0; i < intersects.length; i++) {
+      if (intersects[i].object.name === "waypoint") {
+        this.CambiarCuarto(intersects[i].object);
+      }
+    }
   }
-
 
   public onMouseMove(e: MouseEvent) {
     //Los calculos dependen del tamaño del canvas, en este caso es del tamaño de toda la ventana interior
@@ -235,14 +278,11 @@ export class Museo implements ICuartoEventListener {
       this.scene.children
     );
     for (let i = 0; i < intersects.length; i++) {
-      /*console.log(
-        `Colision con el objeto: ${intersects[i].object.name} en x:${this.mouse.x} y:${this.mouse.y}`
-      );*/
       if (intersects[i].object.name === "waypoint") {
         this.isMouseOverWaypoint = true;
         this.waypointHoverIndex = intersects[i].object.userData.waypoint.Index;
-        if (intersects[i].object.userData.waypoint.ElementoDom != undefined) 
-        intersects[i].object.userData.waypoint.ElementoDom.style.opacity = '1';
+        if (intersects[i].object.userData.waypoint.ElementoDom != undefined)
+          intersects[i].object.userData.waypoint.ElementoDom.style.opacity = '1';
         if (!this.waypointAnimationState)
           intersects[i].object.userData.waypoint.AnimationIn.start();
       }
@@ -264,14 +304,6 @@ export class Museo implements ICuartoEventListener {
 
   }
 
-  private initControls() {
-    var controls = new OrbitControls(this.camera, this.renderer.domElement);
-    controls.minDistance = 1;
-    controls.maxDistance = 10;
-    controls.panSpeed = 0;
-    controls.rotateSpeed = -0.2;
-  }
-
   public Finalizar() { }
 
   public Resize(e: UIEvent) {
@@ -287,13 +319,18 @@ export class Museo implements ICuartoEventListener {
     this.resetWaypoint();
     update();
     this.renderer.render(this.scene, this.camera);
+
   }
 
   private Actualizar() {
     for (const cuarto of this.cuartos) cuarto.Actualizar(0.01);
   }
 
-  private CambiarCuarto() { }
+  private CambiarCuarto(object: Object3D) {
+    var Seccion = object.userData.waypoint.Seccion;
+    const Cuarto = object.userData.waypoint.Nombre;
+    this.setScene(Seccion, Cuarto);
+  }
 
   // ICuartoEventListener
   OnCuartoChange(e: CuartoEventArguments): void {
