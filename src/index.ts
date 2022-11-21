@@ -30,6 +30,5 @@ window.onload = () => {
   window.addEventListener("resize", onWindowResize, false);
   window.addEventListener("mousemove", onMouseMove, false);
   window.addEventListener("click", onMouseClick, false);
-  
   animate();
 };

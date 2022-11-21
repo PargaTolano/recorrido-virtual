@@ -5,7 +5,7 @@
                 "Fondo": "EntradaComerSanoFisica.jpg",
                 "Conexiones": [
                     {
-                        "Nombre": "EntradaFisicaAstronomia",
+                        "Nombre": "EntradaFisicaYAstronomia",
                         "Seccion": "FisicaYAstronomia",
                         "Label": "Fisica y Astronomía",
                         "Posicion": {
@@ -35,7 +35,34 @@
                         }
                     }
                 ],
-                "Exposiciones": [{}]
+                "Exposiciones": [
+                    {}
+                ]
+            },
+            "Estacionamiento": {
+                "Fondo": "backrooms.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "EntradaComerSanoFisica",
+                        "Seccion": "Entremedios",
+                        "Label": "Comer sano, y Física y Astornomía",
+                        "Posicion": {
+                            "x": 16,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "Nombre": "EntradaMI-YO",
+                        "Seccion": "MI-YO",
+                        "Label": "MI YO",
+                        "Posicion": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -16
+                        }
+                    }
+                ]
             }
         }
     },
@@ -46,7 +73,7 @@
                 "Conexiones": [
                     {
                         "Nombre": "EntradaComerSanoFisica",
-                        "Label": "Entrada de Come sano y Física y Astornomía",
+                        "Label": "Entrada de Comer sano y Física y Astornomía",
                         "Seccion": "Entremedios",
                         "Posicion": {
                             "x": 15.9,
@@ -63,23 +90,524 @@
                             "y": 0,
                             "z": -16
                         }
+                    },
+                    {
+                        "Nombre": "ComerSanoPrincipal",
+                        "Label": "",
+                        "Seccion": "ComerSano",
+                        "Posicion": {
+                            "x": -15.7,
+                            "y": 0,
+                            "z": 2.78
+                        }
                     }
                 ],
-                "Exposiciones": [{}]
+                "Exposiciones": [
+                    {}
+                ]
             },
-            "ComerSanoPrincipal":{
-                "Fondo":"ComerSanoPrincipal.jpg",
-                "Conexiones":[
+            "ComerSanoPrincipal": {
+                "Fondo": "ComerSanoPrincipal.jpg",
+                "Conexiones": [
                     {
-                    "Nombre": "EntradaComerSano",
-                    "Seccion": "ComerSano",
-                    "Label": "",
-                    "Posicion": {
-                        "x": 8,
-                        "y": 0,
-                        "z": 8
+                        "Nombre": "EntradaComerSano",
+                        "Seccion": "ComerSano",
+                        "Label": "",
+                        "Posicion": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 16
+                        }
+                    },
+                    {
+                        "Nombre": "EntradaComerSanoFisica",
+                        "Seccion": "Entremedios",
+                        "Label": "Entrada Comer Sano y Fisíca y Astronomía",
+                        "Posicion": {
+                            "x": 10.94,
+                            "y": 0,
+                            "z": 11.66
+                        }
+                    },
+                    {
+                        "Nombre": "ComerSanoZonaEjercicio",
+                        "Seccion": "ComerSano",
+                        "Label": "",
+                        "Posicion": {
+                            "x": -15.87,
+                            "y": 0,
+                            "z": 1.97
+                        }
                     }
-                }]
+                ]
+            },
+            "ComerSanoZonaEjercicio": {
+                "Fondo": "ComerSanoZonaEjercicio.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "ComerSanoPrincipal",
+                        "Seccion": "ComerSano",
+                        "Label": "",
+                        "Posicion": {
+                            "x": 12.26,
+                            "y": 0,
+                            "z": -10.27
+                        }
+                    },
+                    {
+                        "Nombre": "ComerSanoZonaEjercicio2",
+                        "Seccion": "ComerSano",
+                        "Label": "",
+                        "Posicion": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -16
+                        }
+                    }
+                ]
+            },
+            "ComerSanoZonaEjercicio2": {
+                "Fondo": "ComerSanoZonaEjercicio2.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "ComerSanoPrincipal",
+                        "Seccion": "ComerSano",
+                        "Label": "",
+                        "Posicion": {
+                            "x": 12.29,
+                            "y": 0,
+                            "z": 10.24
+                        }
+                    },
+                    {
+                        "Nombre": "ComerSanoZonaEjercicio",
+                        "Seccion": "ComerSano",
+                        "Label": "",
+                        "Posicion": {
+                            "x": 1.54,
+                            "y": 0,
+                            "z": 15.92
+                        }
+                    },
+                    {
+                        "Nombre": "ComerSanoZonaTrasera",
+                        "Seccion": "ComerSano",
+                        "Label": "",
+                        "Posicion": {
+                            "x": -8.12,
+                            "y": 0,
+                            "z": -13.78
+                        }
+                    }
+                ]
+            },
+            "ComerSanoZonaTrasera": {
+                "Fondo": "ComerSanoZonaTrasera.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "EntradaComerSano",
+                        "Seccion": "",
+                        "Label": "",
+                        "Posicion": {
+                            "x": -5.05,
+                            "y": 0,
+                            "z": 15.17
+                        }
+                    },
+                    {
+                        "Nombre": "ComerSanoZonaTrasera2",
+                        "Seccion": "ComerSano",
+                        "Label": "",
+                        "Posicion": {
+                            "x": -3.47,
+                            "y": 0,
+                            "z": -15.61
+                        }
+                    }
+                ]
+            },
+            "ComerSanoZonaTrasera2": {
+                "Fondo": "ComerSanoZonaTrasera2.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "ComerSanoZonaTrasera",
+                        "Seccion": "ComerSano",
+                        "Label": "",
+                        "Posicion": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 16
+                        }
+                    },
+                    {
+                        "Nombre": "ComerSanoZonaTrasera3",
+                        "Seccion": "ComerSano",
+                        "Label": "",
+                        "Posicion": {
+                            "x": 15.47,
+                            "y": 0,
+                            "z": -4.11
+                        }
+                    }
+                ]
+            },
+            "ComerSanoZonaTrasera3": {
+                "Fondo": "ComerSanoZonaTrasera3.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "ComerSanoZonaTrasera2",
+                        "Seccion": "ComerSano",
+                        "Label": "",
+                        "Posicion": {
+                            "x": -14.05,
+                            "y": 0,
+                            "z": -7.63
+                        }
+                    },
+                    {
+                        "Nombre": "ComerSanoZonaEjercicio2",
+                        "Seccion": "ComerSano",
+                        "Label": "",
+                        "Posicion": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 16
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "MI-YO": {
+        "Cuarto": {
+            "EntradaMI-YO": {
+                "Fondo": "MI-YOEntrada.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "Estacionamiento",
+                        "Label": "Estacionamiento",
+                        "Seccion": "Entremedios",
+                        "Posicion": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -16
+                        }
+                    },
+                    {
+                        "Nombre": "MI-YOOrganos",
+                        "Label": "",
+                        "Seccion": "MI-YO",
+                        "Posicion": {
+                            "x": -16,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ]
+            },
+            "MI-YOOrganos": {
+                "Fondo": "MI-YOOrganos.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "MI-YOFondo",
+                        "Label": "",
+                        "Seccion": "MI-YO",
+                        "Posicion": {
+                            "x": -15.66,
+                            "y": 0,
+                            "z": -3.23
+                        }
+                    },
+                    {
+                        "Nombre": "EntradaMI-YO",
+                        "Label": "",
+                        "Seccion": "MI-YO",
+                        "Posicion": {
+                            "x": 15.75,
+                            "y": 0,
+                            "z": -2.76
+                        }
+                    }
+                ]
+            },
+            "MI-YOFondo": {
+                "Fondo": "MI-YOFondo.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "MI-YOFondo2",
+                        "Label": "",
+                        "Seccion": "MI-YO",
+                        "Posicion": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 16
+                        }
+                    },
+                    {
+                        "Nombre": "MI-YOOrganos",
+                        "Label": "",
+                        "Seccion": "MI-YO",
+                        "Posicion": {
+                            "x": 15.75,
+                            "y": 0,
+                            "z": 2.76
+                        }
+                    }
+                ]
+            },
+            "MI-YOFondo2": {
+                "Fondo": "MI-YOFondo2.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "MI-YOFondo",
+                        "Label": "",
+                        "Seccion": "MI-YO",
+                        "Posicion": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -16
+                        }
+                    },
+                    {
+                        "Nombre": "MI-YOCircuito",
+                        "Label": "",
+                        "Seccion": "MI-YO",
+                        "Posicion": {
+                            "x": 15.87,
+                            "y": 0,
+                            "z": -1.98
+                        }
+                    }
+                ]
+            },
+            "MI-YOCircuito": {
+                "Fondo": "MI-YOCircuito.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "MI-YOFondo2",
+                        "Label": "",
+                        "Seccion": "MI-YO",
+                        "Posicion": {
+                            "x": 3.39,
+                            "y": 0,
+                            "z": 15.63
+                        }
+                    },
+                    {
+                        "Nombre": "MI-YONeuronas",
+                        "Label": "",
+                        "Seccion": "MI-YO",
+                        "Posicion": {
+                            "x": -3.46,
+                            "y": 0,
+                            "z": -15.62
+                        }
+                    }
+                ]
+            },
+            "MI-YONeuronas": {
+                "Fondo": "MI-YONeuronas.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "MI-YOCircuito",
+                        "Label": "",
+                        "Seccion": "MI-YO",
+                        "Posicion": {
+                            "x": -16,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "FisicaYAstronomia": {
+        "Cuarto": {
+            "EntradaFisicaYAstronomia": {
+                "Fondo": "FisicaYAstronomiaEntrada.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "EntradaComerSanoFisica",
+                        "Label": "Entrada comer sano fisica",
+                        "Seccion": "Entremedios",
+                        "Posicion": {
+                            "x": -0.96,
+                            "y": 0,
+                            "z": 15.97
+                        }
+                    },
+                    {
+                        "Nombre": "FisicaYAstronomiaZonaElectricidad",
+                        "Label": "",
+                        "Seccion": "FisicaYAstronomia",
+                        "Posicion": {
+                            "x": 16,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "Nombre": "FisicaYAStronomiaZonaOptica2",
+                        "Label": "",
+                        "Seccion": "FisicaYAstronomia",
+                        "Posicion": {
+                            "x": -15.66,
+                            "y": 0,
+                            "z": -3.24
+                        }
+                    }
+                ]
+            },
+            "FisicaYAstronomiaZonaElectricidad": {
+                "Fondo": "FisicaYAstronomiaZonaElectricidad.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "EntradaFisicaYAstronomia",
+                        "Label": "",
+                        "Seccion": "FisicaYAstronomia",
+                        "Posicion": {
+                            "x": -10.98,
+                            "y": 0,
+                            "z": 11.63
+                        }
+                    },
+                    {
+                        "Nombre": "FisicaYAstronomiaZonaElectricidad2",
+                        "Label": "",
+                        "Seccion": "FisicaYAstronomia",
+                        "Posicion": {
+                            "x": -11.94,
+                            "y": 0,
+                            "z": -10.64
+                        }
+                    }
+                ]
+            },
+            "FisicaYAstronomiaZonaElectricidad2": {
+                "Fondo": "FisicaYAstronomiaZonaElectricidad2.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "FisicaYAstronomiaFondo",
+                        "Label": "",
+                        "Seccion": "FisicaYAstronomia",
+                        "Posicion": {
+                            "x": -4.3,
+                            "y": 0,
+                            "z": -15.41
+                        }
+                    },
+                    {
+                        "Nombre": "FisicaYAstronomiaZonaElectricidad",
+                        "Label": "",
+                        "Seccion": "FisicaYAstronomia",
+                        "Posicion": {
+                            "x": 4.22,
+                            "y": 0,
+                            "z": 15.43
+                        }
+                    }
+                ]
+            },
+            "FisicaYAstronomiaFondo": {
+                "Fondo": "FisicaYAstronomiaFondo.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "FisicaYAstronomiaFondo2",
+                        "Label": "",
+                        "Seccion": "FisicaYAstronomia",
+                        "Posicion": {
+                            "x": -16,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "Nombre": "FisicaYAstronomiaZonaElectricidad2",
+                        "Label": "",
+                        "Seccion": "FisicaYAstronomia",
+                        "Posicion": {
+                            "x": 7.10,
+                            "y": 0,
+                            "z": 14.33
+                        }
+                    }
+                ]
+            },
+            "FisicaYAstronomiaFondo2": {
+                "Fondo": "FisicaYAstronomiaFondo2.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "FisicaYAstronomiaFondo",
+                        "Label": "",
+                        "Seccion": "FisicaYAstronomia",
+                        "Posicion": {
+                            "x": 15.30,
+                            "y": 0,
+                            "z": -4.67
+                        }
+                    },
+                    {
+                        "Nombre": "FisicaYAStronomiaZonaOptica",
+                        "Label": "",
+                        "Seccion": "FisicaYAstronomia",
+                        "Posicion": {
+                            "x": -2.77,
+                            "y": 0,
+                            "z": 15.75
+                        }
+                    }
+                ]
+            },
+            "FisicaYAStronomiaZonaOptica": {
+                "Fondo": "FisicaYAStronomiaZonaOptica.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "FisicaYAstronomiaFondo2",
+                        "Label": "",
+                        "Seccion": "FisicaYAstronomia",
+                        "Posicion": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -16
+                        }
+                    },
+                    {
+                        "Nombre": "FisicaYAStronomiaZonaOptica2",
+                        "Label": "",
+                        "Seccion": "FisicaYAstronomia",
+                        "Posicion": {
+                            "x": 4.73,
+                            "y": 0,
+                            "z": 15.28
+                        }
+                    }
+                ]
+            },
+            "FisicaYAStronomiaZonaOptica2": {
+                "Fondo": "FisicaYAStronomiaZonaOptica2.jpg",
+                "Conexiones": [
+                    {
+                        "Nombre": "FisicaYAStronomiaZonaOptica",
+                        "Label": "",
+                        "Seccion": "FisicaYAstronomia",
+                        "Posicion": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -16
+                        }
+                    },
+                    {
+                        "Nombre": "EntradaFisicaYAstronomia",
+                        "Label": "",
+                        "Seccion": "FisicaYAstronomia",
+                        "Posicion": {
+                            "x": 11.31,
+                            "y": 0,
+                            "z": 11.31
+                        }
+                    }
+                ]
             }
         }
     }

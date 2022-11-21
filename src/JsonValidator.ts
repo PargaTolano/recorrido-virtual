@@ -32,7 +32,7 @@ export function JsonValidator() {
                 let tieneConexiones: Boolean = true;
                 //validamos si el cuarto tien eal menos una conexión
                 //@ts-ignore
-                if (valueCuarto.Conexiones.length === 0 || Object.keys(valueCuarto.Conexiones[0]).length === 0)
+                if (valueCuarto.Conexiones === undefined || valueCuarto.Conexiones.length === 0 || Object.keys(valueCuarto.Conexiones[0]).length === 0 )
                     tieneConexiones = false;
                 if (tieneConexiones) {
                     //@ts-ignore

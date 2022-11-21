@@ -22,7 +22,6 @@ import {
   ICuartoEventListener,
   PausaMuseoEventArguments,
 } from "./Events/ICuartoEventListener";
-
 const {
   WaypointExteriorRadius,
   WaypointCenterRadius,
@@ -31,7 +30,6 @@ const {
   WaypointCenterColor,
   WaypointExteriorColor
 } = require("../const.json");
-
 const Secciones = require("./Cuarto/Cuartos.json");
 
 export class Museo implements ICuartoEventListener {
@@ -62,8 +60,8 @@ export class Museo implements ICuartoEventListener {
   private targetList: Array<any> = [];
   private isMouseOverWaypoint: Boolean = false;
   private waypointAnimationState: Boolean = false;
-  private skydome: Mesh;
 
+  private skydome: Mesh;
   private waypointMeshCenter: SphereGeometry;
   private waypointMeshExterior: SphereGeometry;
   private waypointTextureCenter: MeshBasicMaterial;
@@ -118,7 +116,7 @@ export class Museo implements ICuartoEventListener {
     this.scene.add(this.skydome);
     //Le pasamos la seccion y el cuarto que vamos a instanciar
     this.setScene("Entremedios", "EntradaComerSanoFisica");
-    
+
     //Inicio de controladores
     var controls = new OrbitControls(this.camera, this.renderer.domElement);
     controls.minDistance = 1;
@@ -148,20 +146,17 @@ export class Museo implements ICuartoEventListener {
 
   private setScene(Seccion: any, Cuarto: any) {
 
-    //Eliminamos los anteriores Waypoints y Meshes
+    //Eliminamos los anteriores Waypoints y Meshes de la escena
     for (let i = 0; i < this.targetList.length; i++) {
       this.scene.remove(this.targetList[i].object);
-      if(this.targetList[i].elem !== undefined ){
+      if (this.targetList[i].elem !== undefined) {
         this.targetList[i].elem.remove();
       }
-      
     }
 
+    //Vaciamos los arrays
     this.targetList = [];
-    console.log(this.targetList);
-    //Creacion de Geometria y Materiales
-
-
+    this.waypointsArray = [];
 
     //Agarramos el cuarto del JSON y sacamos sus conexiones con otros cuartos, exposiciones y el fondo. 
     const CuartoActual = Secciones[Seccion].Cuarto[Cuarto]
@@ -252,7 +247,6 @@ export class Museo implements ICuartoEventListener {
     SkydomeTexture.wrapS = RepeatWrapping;
     SkydomeTexture.repeat.x = - 1;
     this.fondoActual.map = SkydomeTexture;
-
   }
 
 
@@ -292,16 +286,17 @@ export class Museo implements ICuartoEventListener {
   private resetWaypoint() {
     const index = this.waypointHoverIndex;
     if (!this.isMouseOverWaypoint && this.waypointAnimationState) {
-      if (index !== null)
+      if (index !== null && this.waypointsArray[index]) {
         this.waypointsArray[index].AnimationOut.start();
+      }
       this.waypointHoverIndex = null;
       for (let i = 0; i < this.waypointsArray.length; i++) {
-        if (this.waypointsArray[i].ElementoDom === undefined) return;
+        if (this.waypointsArray[i].ElementoDom === undefined)
+          return;
         this.waypointsArray[i].ElementoDom.style.opacity = '0';
       }
     }
     this.isMouseOverWaypoint = false;
-
   }
 
   public Finalizar() { }
@@ -319,7 +314,6 @@ export class Museo implements ICuartoEventListener {
     this.resetWaypoint();
     update();
     this.renderer.render(this.scene, this.camera);
-
   }
 
   private Actualizar() {
