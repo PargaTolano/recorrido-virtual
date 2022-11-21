@@ -6,6 +6,7 @@ import { TextureLoader } from "three";
     3.- Si las conexiones tienen posicion, sus coordenadas esten en minusculas con las letras correctas(x, y, z) y que no se repitan
     4.- Que los cuartos tengan almenos una conexión 
     5.- Que los fondos existan en la carpeta de Resources
+    6.- Que las secciones que esten en las conexiones existan el el JSON
 */
 export function JsonValidator() {
 
@@ -14,23 +15,25 @@ export function JsonValidator() {
         console.time('CUARTOS JSON DEBUG TIME');
 
         let Nombres: Array<String> = [];
+        let Secciones: Array<String> = [];
 
         //LLenamos el array de arriba con los nombres de cada cuarto
         Object.entries(Cuartos).forEach(([Seccion, valueSeccion], index) => {
+            Secciones.push(Seccion);
             //@ts-ignore
             Object.entries(valueSeccion.Cuarto).forEach(([Cuarto, valueCuarto], index) => {
                 Nombres.push(Cuarto);
             })
         });
 
-
+        console.log(Secciones);
         Object.entries(Cuartos).forEach(([Seccion, valueSeccion], index) => {
             //@ts-ignore
             Object.entries(valueSeccion.Cuarto).forEach(([Cuarto, valueCuarto], index) => {
                 //@ts-ignore
                 const backgroundCheck = new TextureLoader().load(`../Resources/Backgrounds/${Seccion}/${valueCuarto.Fondo}`);
                 let tieneConexiones: Boolean = true;
-                //validamos si el cuarto tien eal menos una conexión
+                //validamos si el cuarto tiene al menos una conexión
                 //@ts-ignore
                 if (valueCuarto.Conexiones === undefined || valueCuarto.Conexiones.length === 0 || Object.keys(valueCuarto.Conexiones[0]).length === 0 )
                     tieneConexiones = false;
@@ -40,6 +43,7 @@ export function JsonValidator() {
                         //@ts-ignore
                         let ConexionActual = valueCuarto.Conexiones[i];
                         let isValidName: Boolean = false;
+                        let isValidSeccion: Boolean = false;
                         let isPositionValid: Boolean = true;
                         let nameExists: Boolean = true;
                         let positionExists: Boolean = true;
@@ -51,6 +55,12 @@ export function JsonValidator() {
                             for (let j = 0; j < Nombres.length; j++) {
                                 if (ConexionActual.Nombre === Nombres[j])
                                     isValidName = true;
+                            }
+                            if(isValidName){
+                                for (let j = 0; j < Secciones.length; j++) {
+                                    if (ConexionActual.Seccion === Secciones[j])
+                                    isValidSeccion = true;
+                                }
                             }
                         }
                         //Verificamos que la posicion de la conexión exista
@@ -81,8 +91,10 @@ export function JsonValidator() {
 
                         }
 
+                        if(!isValidSeccion){
+                            console.error(`No se encontro la seccion de "${ConexionActual.Seccion}", instanciado en la seccion "${Seccion}" en el cuarto "${Cuarto}".`);
 
-                        if (!nameExists) {
+                        } else if (!nameExists) {
                             console.error(`En la seccion "${Seccion}" en el cuarto "${Cuarto}" hay una conexión que no tiene nombre.`);
                         } else if (!isValidName) {
                             console.error(`No se encontro el cuarto "${ConexionActual.Nombre}", instanciado en la seccion "${Seccion}" en el cuarto "${Cuarto}".`)

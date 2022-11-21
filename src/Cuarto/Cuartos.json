@@ -206,7 +206,7 @@
                 "Conexiones": [
                     {
                         "Nombre": "EntradaComerSano",
-                        "Seccion": "",
+                        "Seccion": "ComerSano",
                         "Label": "",
                         "Posicion": {
                             "x": -5.05,
