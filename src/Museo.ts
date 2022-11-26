@@ -28,7 +28,9 @@ const {
   WaypointCenterOpacity,
   WaypointExteriorOpacity,
   WaypointCenterColor,
-  WaypointExteriorColor
+  WaypointExteriorColor,
+  ExpositionWaypointCenterColor,
+  ExpositionWaypointExteriorColor
 } = require("../const.json");
 const Secciones = require("./Cuarto/Cuartos.json");
 
@@ -65,7 +67,9 @@ export class Museo implements ICuartoEventListener {
   private waypointMeshCenter: SphereGeometry;
   private waypointMeshExterior: SphereGeometry;
   private waypointTextureCenter: MeshBasicMaterial;
+  private expositionWaypointTextureCenter: MeshBasicMaterial;
   private waypointTextureExterior: MeshBasicMaterial;
+  private expositionWaypointTextureExterior: MeshBasicMaterial;
 
 
   //metodos
@@ -112,10 +116,23 @@ export class Museo implements ICuartoEventListener {
       opacity: WaypointExteriorOpacity,
     });
 
+    this.expositionWaypointTextureCenter = new MeshBasicMaterial({
+      color: ExpositionWaypointCenterColor,
+      transparent: true,
+      opacity: WaypointCenterOpacity,
+    });
+    this.expositionWaypointTextureExterior = new MeshBasicMaterial({
+      color: ExpositionWaypointExteriorColor,
+      transparent: true,
+      opacity: WaypointExteriorOpacity,
+    });
+
+
     this.skydome = new Mesh(SkydomeMesh, this.fondoActual);
     this.scene.add(this.skydome);
+
     //Le pasamos la seccion y el cuarto que vamos a instanciar
-    this.setScene("Entremedios", "EntradaComerSanoFisica");
+    this.setScene("MI-YO", "MI-YONeuronas");
 
     //Inicio de controladores
     var controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -131,16 +148,18 @@ export class Museo implements ICuartoEventListener {
     for (let i = 0; i < this.targetList.length; i++) {
 
       const { object, elem } = this.targetList[i];
-      if (elem === undefined) return;
+      if (elem !== undefined) {
+        object.updateWorldMatrix(true, false);
+        object.getWorldPosition(tempV);
+  
+        tempV.project(this.camera);
+  
+        const x = (tempV.x * .5 + .5) * this.canvas.clientWidth;
+        const y = (tempV.y * -.5 + .5) * this.canvas.clientHeight;
+        elem.style.transform = `translate(-50%, -200%) translate(${x}px,${y}px)`;
+      }
 
-      object.updateWorldMatrix(true, false);
-      object.getWorldPosition(tempV);
-
-      tempV.project(this.camera);
-
-      const x = (tempV.x * .5 + .5) * this.canvas.clientWidth;
-      const y = (tempV.y * -.5 + .5) * this.canvas.clientHeight;
-      elem.style.transform = `translate(-50%, -200%) translate(${x}px,${y}px)`;
+      
     }
   }
 
@@ -161,7 +180,9 @@ export class Museo implements ICuartoEventListener {
     //Agarramos el cuarto del JSON y sacamos sus conexiones con otros cuartos, exposiciones y el fondo. 
     const CuartoActual = Secciones[Seccion].Cuarto[Cuarto]
     const Conexiones = CuartoActual.Conexiones;
+    const Exposiciones = CuartoActual.Exposiciones;
     const Fondo = CuartoActual.Fondo;
+    let globalIndex = 0;
 
     //Instanciamos los puntos de ida de el cuarto
     for (let i = 0; i < Conexiones.length; i++) {
@@ -204,7 +225,6 @@ export class Museo implements ICuartoEventListener {
         "Seccion": Conexiones[i].Seccion,
         "Nombre": Conexiones[i].Nombre,
         "Label": Conexiones[i].Label,
-        "Descripcion": Conexiones[i].Descripcion,
         "ElementoDom": elem,
         "AnimationIn": new Tween({ Ex: 1, Ey: 1, Ez: 1, Cx: 1, Cy: 1, Cz: 1, })
           .to({ Ex: 1.1, Ey: 1.1, Ez: 1.1, Cx: 0.7, Cy: 0.7, Cz: 0.7 }, 320)
@@ -236,10 +256,89 @@ export class Museo implements ICuartoEventListener {
         "object": waypointExterior,
         "elem": elem
       }
+
       //los agregamos a los arreglos
       this.targetList.push(waypointInfo);
       this.waypointsArray.push(waypoint);
       this.scene.add(waypointExterior);
+      globalIndex = i;
+
+    }
+    globalIndex++;
+    if (Exposiciones !== undefined && Exposiciones.length != 0) {
+      for (let i = 0; i < Exposiciones.length; i++) {
+
+        const waypointCenter = new Mesh(this.waypointMeshCenter, this.expositionWaypointTextureCenter);
+        const waypointExterior = new Mesh(this.waypointMeshExterior, this.expositionWaypointTextureExterior);
+
+        //Hacemos que su nombre sea waypoint      
+        waypointExterior.name = "exposition";
+
+        //Hacemos waypoint exerior padre de waypoint center
+        waypointExterior.add(waypointCenter);
+        const posicion = Exposiciones[i].Posicion;
+        waypointExterior.position.set(posicion.x, posicion.y, posicion.z);
+
+        //Si tiene label se calcula su posicion en la pantalla
+        const tempV = new Vector3();
+        waypointExterior.updateWorldMatrix(true, false);
+        waypointExterior.getWorldPosition(tempV);
+        tempV.project(this.camera);
+        let x = (tempV.x * .5 + .5) * this.canvas.clientWidth;
+        let y = (tempV.y * -.5 + .5) * this.canvas.clientHeight;
+
+        //Y le hacemos su elemento div con su label
+        let elem: any;
+        if (Exposiciones[i].Label != "") {
+          elem = document.createElement('div');
+          elem.textContent = Exposiciones[i].Label;
+          document.querySelector('#labels').appendChild(elem);
+          elem.style.transform = `translate(-50%, -170%) translate(${x}px,${y}px)`;
+          elem.style.opacity = '0';
+        }
+
+
+        const waypoint = {
+          "Index": globalIndex,
+          "Nombre": Exposiciones[i].Nombre,
+          "Label": Exposiciones[i].Label,
+          "ElementoDom": elem,
+          "AnimationIn": new Tween({ Ex: 1, Ey: 1, Ez: 1, Cx: 1, Cy: 1, Cz: 1, })
+            .to({ Ex: 1.1, Ey: 1.1, Ez: 1.1, Cx: 0.7, Cy: 0.7, Cz: 0.7 }, 320)
+            .onUpdate((anim) => {
+              waypointExterior.scale.set(anim.Ex, anim.Ey, anim.Ez);
+              waypointCenter.scale.set(anim.Cx, anim.Cy, anim.Cz);
+            })
+            .repeat(0)
+            .easing(Easing.Exponential.Out)
+            .onStart(() => {
+              this.waypointAnimationState = true;
+            }),
+          "AnimationOut": new Tween({ Ex: 1.1, Ey: 1.1, Ez: 1.1, Cx: 0.7, Cy: 0.7, Cz: 0.7, })
+            .to({ Ex: 1, Ey: 1, Ez: 1, Cx: 1, Cy: 1, Cz: 1, }, 320)
+            .onUpdate((anim) => {
+              waypointExterior.scale.set(anim.Ex, anim.Ey, anim.Ez);
+              waypointCenter.scale.set(anim.Cx, anim.Cy, anim.Cz);
+            })
+            .repeat(0)
+            .easing(Easing.Exponential.Out)
+            .onStart(() => {
+              this.waypointAnimationState = false;
+            })
+        }
+
+        waypointExterior.userData.waypoint = waypoint;
+        const waypointInfo = {
+          "object": waypointExterior,
+          "elem": elem
+        }
+
+        this.targetList.push(waypointInfo);
+        this.waypointsArray.push(waypoint);
+        this.scene.add(waypointExterior);
+        globalIndex++;
+
+      }
     }
 
     //Ponemos el fondo
@@ -272,7 +371,7 @@ export class Museo implements ICuartoEventListener {
       this.scene.children
     );
     for (let i = 0; i < intersects.length; i++) {
-      if (intersects[i].object.name === "waypoint") {
+      if (intersects[i].object.name === "waypoint" || intersects[i].object.name === "exposition") {
         this.isMouseOverWaypoint = true;
         this.waypointHoverIndex = intersects[i].object.userData.waypoint.Index;
         if (intersects[i].object.userData.waypoint.ElementoDom != undefined)
@@ -291,9 +390,9 @@ export class Museo implements ICuartoEventListener {
       }
       this.waypointHoverIndex = null;
       for (let i = 0; i < this.waypointsArray.length; i++) {
-        if (this.waypointsArray[i].ElementoDom === undefined)
-          return;
-        this.waypointsArray[i].ElementoDom.style.opacity = '0';
+        if (this.waypointsArray[i].ElementoDom !== undefined){
+          this.waypointsArray[i].ElementoDom.style.opacity = '0';
+        }        
       }
     }
     this.isMouseOverWaypoint = false;

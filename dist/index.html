@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpack Typescript build</title>
+    <title>MCU Virtual</title>
     <script type="module" src="bundle.js"></script>
     <style>
         html,
@@ -20,25 +20,82 @@
             position: absolute;
             left: 0;
             top: 0;
-            font-weight: 900 ;
+            font-weight: 900;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             cursor: pointer;
             font-size: large;
             user-select: none;
-            color:rgb(0, 0, 0);
+            color: rgb(0, 0, 0);
             background-color: rgba(255, 255, 255, 0.425);
             padding: 10px;
             border-radius: 30px;
             transition: .2s;
         }
 
+        #info-modals {
+            position: absolute;
+            left: 0;
+            top: 0;
+            max-width: 20vw;
+        }
+
         
+        #info-modal {
+            background-color: rgba(243, 243, 243, 0.61);
+            padding: 10px;
+            border-radius: 5px;
+            max-height: 80vh;
+            overflow-y: scroll;
+        }
+
+        #info-modal .card .title {
+            justify-content: center;
+            text-align: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            user-select: none;
+            border: 1px;
+            max-width: inherit;
+
+        }
+
+        #info-modal .card .separatory-line {
+            background-color: rgb(51, 0, 38);
+            height: 3px;
+            margin: 10px;
+            max-width: inherit;
+
+        }
+
+        #info-modal .card .info {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: 200;
+            font-size: medium;
+            justify-content: center;
+        }
     </style>
 </head>
 
 <body>
     <canvas id="museo-canvas"></canvas>
     <div id="labels"></div>
-</body>
+    <div id="info-modals">
+        
+    </div>
 
+</body>
+<div id="info-modal">
+    <div class="card">
+        <div class="title">
+            <Label>Titulo</Label>
+        </div>
+        <div class="separatory-line"></div>
+        <div class="info">
+            <p>
+                Label
+            </p>
+        </div>
+    </div>
+</div>
 </html>

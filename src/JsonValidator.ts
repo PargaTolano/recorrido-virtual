@@ -26,7 +26,6 @@ export function JsonValidator() {
             })
         });
 
-        console.log(Secciones);
         Object.entries(Cuartos).forEach(([Seccion, valueSeccion], index) => {
             //@ts-ignore
             Object.entries(valueSeccion.Cuarto).forEach(([Cuarto, valueCuarto], index) => {

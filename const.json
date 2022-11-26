@@ -6,6 +6,10 @@
     "WaypointExteriorOpacity":0.5,
     "WaypointCenterOpacity": 1.0,
 
-    "WaypointCenterColor":"0xffffff",
-    "WaypointExteriorColor":"0xffffff"
+    "WaypointCenterColor":"#ffffff",
+    "WaypointExteriorColor":"#ffffff",
+
+    "ExpositionWaypointCenterColor":"#0ebeff",
+    "ExpositionWaypointExteriorColor":"#0ebeff"
+
 }

@@ -34,9 +34,6 @@
                             "z": 16
                         }
                     }
-                ],
-                "Exposiciones": [
-                    {}
                 ]
             },
             "Estacionamiento": {
@@ -83,8 +80,8 @@
                     },
                     {
                         "Nombre": "ComerSanoPrincipal",
-                        "Label": "",
                         "Seccion": "ComerSano",
+                        "Label": "",
                         "Posicion": {
                             "x": 0,
                             "y": 0,
@@ -92,9 +89,9 @@
                         }
                     },
                     {
-                        "Nombre": "ComerSanoPrincipal",
-                        "Label": "",
+                        "Nombre": "ComerSanoZonaEjercicio",
                         "Seccion": "ComerSano",
+                        "Label": "",
                         "Posicion": {
                             "x": -15.7,
                             "y": 0,
@@ -103,7 +100,46 @@
                     }
                 ],
                 "Exposiciones": [
-                    {}
+                    {
+                        "Nombre":"TeatroComida",
+                        "Label":"Teatro de comida",
+                        "Posicion":{
+                            "x": 13.36,
+                            "y": 0,
+                            "z": 8.79
+                        }
+
+                    },
+                    {
+                        "Nombre":"DetectivesPublicidad",
+                        "Label":"Detectives de publicidad",
+                        "Posicion":{
+                            "x": -6.76,
+                            "y": 0,
+                            "z": 14.50
+                        }
+
+                    },
+                    {
+                        "Nombre":"MidePorciones",
+                        "Label":"Mide las porciones",
+                        "Posicion":{
+                            "x": -13.07,
+                            "y": 0,
+                            "z": -9.3
+                        }
+
+                    },
+                    {
+                        "Nombre":"ComeArcoiris",
+                        "Label":"Come un Arcoiris", 
+                        "Posicion":{
+                            "x": 11.61,
+                            "y": -2.5,
+                            "z": -11
+                        }
+
+                    }
                 ]
             },
             "ComerSanoPrincipal": {
@@ -139,6 +175,53 @@
                             "z": 1.97
                         }
                     }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "IngredientesAgregados",
+                        "Label": "Ingredientes Agregados",
+                        "Posicion": {
+                            "x": 2.69,
+                            "y": 0,
+                            "z": -15.77
+                        }
+                    },
+                    {
+                        "Nombre": "LLenaCuerpoEnergia",
+                        "Label": "Llena tu cuerpo de Energía",
+                        "Posicion": {
+                            "x": 15.52,
+                            "y": 0,
+                            "z": -3.87
+                        }
+                    },
+                    {
+                        "Nombre": "SenialesHambre",
+                        "Label": "Señales de hambre",
+                        "Posicion": {
+                            "x": -11.16,
+                            "y": 1,
+                            "z": -11.46
+                        }
+                    },
+                    {
+                        "Nombre": "ComeArcoiris",
+                        "Label": "Come un Arcoiris",
+                        "Posicion": {
+                            "x": 12.86,
+                            "y": -3,
+                            "z": 9.51
+                        }
+                    },
+                    {
+                        "Nombre": "ComeArcoiris",
+                        "Label": "Come un Arcoiris",
+                        "Posicion": {
+                            "x": -11.54,
+                            "y": 0,
+                            "z": 11.07
+                        }
+                    }
                 ]
             },
             "ComerSanoZonaEjercicio": {
@@ -162,6 +245,58 @@
                             "x": 0,
                             "y": 0,
                             "z": -16
+                        }
+                    }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "SeFlexible",
+                        "Label": "Se Flexible",
+                        "Posicion": {
+                            "x": 15.98,
+                            "y": 0,
+                            "z": -0.57
+
+                        }
+                    },
+                    {
+                        "Nombre": "CaloriasLiquidas",
+                        "Label": "Calorías líquidas",
+                        "Posicion": {
+                            "x": 8.96,
+                            "y": 0,
+                            "z": 13.25
+
+                        }
+                    },
+                    {
+                        "Nombre": "NutricionSupermercado",
+                        "Label": "Nutrición de Supermercado",
+                        "Posicion": {
+                            "x": -5.05,
+                            "y": 0,
+                            "z": 15.17
+
+                        }
+                    },
+                    {
+                        "Nombre": "ActoEquilibrio",
+                        "Label": "Acto de Equilibrio",
+                        "Posicion": {
+                            "x": -15.94,
+                            "y": 0,
+                            "z": 1.35
+
+                        }
+                    },
+                    {
+                        "Nombre": "PruebaFuerzaPiernas",
+                        "Label": "Prueba tu fuerza ( Fuerza en las piernas )",
+                        "Posicion": {
+                            "x": -8.24,
+                            "y": 0,
+                            "z": -13.71
+
                         }
                     }
                 ]
@@ -199,6 +334,53 @@
                             "z": -13.78
                         }
                     }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "PruebaFuerzaTorso",
+                        "Label": " Prueba tu fuerza ( Torso y Brazos )",
+                        "Posicion": {
+                            "x": -5.05,
+                            "y": 0,
+                            "z": 15.17
+                        }
+                    },
+                    {
+                        "Nombre": "PruebaFuerzaAgarre",
+                        "Label": " Prueba tu fuerza ( Agarre )",
+                        "Posicion": {
+                            "x": -10.27,
+                            "y": 0,
+                            "z": 12.26
+                        }
+                    },
+                    {
+                        "Nombre": "PoderVegetal",
+                        "Label": " Poder Vegetal",
+                        "Posicion": {
+                            "x": -15.25,
+                            "y": 0,
+                            "z": -4.82
+                        }
+                    },
+                    {
+                        "Nombre": "SaltarHuesos",
+                        "Label": " Saltar para tener huesos fuertes",
+                        "Posicion": {
+                            "x": 15.98,
+                            "y": 0,
+                            "z": 0.58
+                        }
+                    },
+                    {
+                        "Nombre": "CaloriasAdentroAfuera",
+                        "Label": " Calorias Adentro, Calorías Afuera",
+                        "Posicion": {
+                            "x": 5.05,
+                            "y": 0,
+                            "z": -15.17
+                        }
+                    }
                 ]
             },
             "ComerSanoZonaTrasera": {
@@ -222,6 +404,44 @@
                             "x": -3.47,
                             "y": 0,
                             "z": -15.61
+                        }
+                    }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "AlimentosDeportivo",
+                        "Label": "Alimentos Deportivos",
+                        "Posicion": {
+                            "x": -12.4,
+                            "y": 0,
+                            "z": -10.16
+                        }
+                    },
+                    {
+                        "Nombre": "VidaMasSana",
+                        "Label": "Hacia una vida más sana",
+                        "Posicion": {
+                            "x": 14.36,
+                            "y": 1,
+                            "z": 7.04
+                        }
+                    },
+                    {
+                        "Nombre": "UsandoEnergia",
+                        "Label": "Usando energía",
+                        "Posicion": {
+                            "x": 15.67,
+                            "y": 0,
+                            "z": -3.2
+                        }
+                    },
+                    {
+                        "Nombre": "LeeEtiqueta",
+                        "Label": "Lee la etiqueta",
+                        "Posicion": {
+                            "x": 4.32,
+                            "y": 0,
+                            "z": -15.40
                         }
                     }
                 ]
@@ -249,6 +469,44 @@
                             "z": -4.11
                         }
                     }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "TimepoPantalla",
+                        "Label": "Tiempo frente a la pantalla",
+                        "Posicion": {
+                            "x": -15.45,
+                            "y": 0,
+                            "z": -4.13
+                        }
+                    },
+                    {
+                        "Nombre": "Estadisticas",
+                        "Label": "No seas parte de las estadisticas",
+                        "Posicion": {
+                            "x": 4.4 ,
+                            "y": 0,
+                            "z": -15.38
+                        }
+                    },
+                    {
+                        "Nombre": "AlimentosDeportivo",
+                        "Label": "Alimentos Deportivos",
+                        "Posicion": {
+                            "x": -3.79,
+                            "y": 0,
+                            "z": 15
+                        }
+                    },
+                    {
+                        "Nombre": "LeeEtiqueta",
+                        "Label": "Lee la etiqueta",
+                        "Posicion": {
+                            "x": 12.08,
+                            "y": 0,
+                            "z": 10.48
+                        }
+                    }
                 ]
             },
             "ComerSanoZonaTrasera3": {
@@ -272,6 +530,44 @@
                             "x": 0,
                             "y": 0,
                             "z": 16
+                        }
+                    }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "LeeEtiqueta",
+                        "Label": "Lee la etiqueta",
+                        "Posicion": {
+                            "x": -11.31,
+                            "y": 0,
+                            "z": 11.31
+                        }
+                    },
+                    {
+                        "Nombre": "PoderEjercicio",
+                        "Label": "El poder del Ejercicio",
+                        "Posicion": {
+                            "x": 15.68,
+                            "y": 0,
+                            "z": -3.16
+                        }
+                    },
+                    {
+                        "Nombre": "Estadisticas",
+                        "Label": "No seas parte de las estadisticas",
+                        "Posicion": {
+                            "x": -12.04,
+                            "y": 0,
+                            "z": -10.52
+                        }
+                    },
+                    {
+                        "Nombre": "UsandoEnergia",
+                        "Label": "Usando energía",
+                        "Posicion": {
+                            "x": 5.05,
+                            "y": 0,
+                            "z": 15.17
                         }
                     }
                 ]
@@ -328,6 +624,62 @@
                             "z": -2.76
                         }
                     }
+                ],
+                "Exposiciones": [
+                    {
+                        "Nombre": "JuntosRevueltos",
+                        "Label": "Juntos pero no revueltos",
+                        "Posicion": {
+                            "x": 12.15,
+                            "y": 0,
+                            "z": -10.4
+                        }
+                    },
+                    {
+                        "Nombre": "PiensaPresiona",
+                        "Label": "Piensa, relaciona y presiona",
+                        "Posicion": {
+                            "x": 4.22,
+                            "y": 0,
+                            "z": 15.37
+                        }
+                    },
+                    {
+                        "Nombre": "CaceriaGermenes",
+                        "Label": "Cacería de germenes",
+                        "Posicion": {
+                            "x": 14.9,
+                            "y": 0,
+                            "z": 5.81
+                        }
+                    },
+                    {
+                        "Nombre": "LaberintoDigestivo",
+                        "Label": "Laberinto Digestivo",
+                        "Posicion": {
+                            "x": -12.78,
+                            "y": -3,
+                            "z": -9.61
+                        }
+                    },
+                    {
+                        "Nombre": "LocuraADN",
+                        "Label": "La locura del ADN",
+                        "Posicion": {
+                            "x": -14.59,
+                            "y": 0,
+                            "z": 6.56
+                        }
+                    },
+                    {
+                        "Nombre": "DesifrandoCelulas",
+                        "Label": "Desifrando células",
+                        "Posicion": {
+                            "x": -14.99,
+                            "y": 0,
+                            "z": -5.85
+                        }
+                    }
                 ]
             },
             "MI-YOFondo": {
@@ -351,6 +703,35 @@
                             "x": 15.75,
                             "y": 0,
                             "z": 2.76
+                        }
+                    }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "ParedEscalar",
+                        "Label": "Pared para escalar",
+                        "Posicion": {
+                            "x": 7.1,
+                            "y": 0,
+                            "z": 14.33
+                        }
+                    },
+                    {
+                        "Nombre": "DondeAmerica",
+                        "Label": "¿Donde esta norteamérica?",
+                        "Posicion": {
+                            "x": -13.51,
+                            "y": 0,
+                            "z": 8.56
+                        }
+                    },
+                    {
+                        "Nombre": "TunelIlusion",
+                        "Label": "Tunel ",
+                        "Posicion": {
+                            "x": -15.97,
+                            "y": 0,
+                            "z": 0.91
                         }
                     }
                 ]
@@ -378,6 +759,35 @@
                             "z": -1.98
                         }
                     }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "TunelIlusion",
+                        "Label": "Tunel",
+                        "Posicion": {
+                            "x": -15.85,
+                            "y": 0,
+                            "z": -2.15
+                        }
+                    },
+                    {
+                        "Nombre": "Memoria",
+                        "Label": "Memoria",
+                        "Posicion": {
+                            "x": -10.93,
+                            "y": 0,
+                            "z": -11.68
+                        }
+                    },
+                    {
+                        "Nombre": "ParedEscalar",
+                        "Label": "Pared para escalar",
+                        "Posicion": {
+                            "x": 12.16,
+                            "y": 0,
+                            "z": -10.39
+                        }
+                    }
                 ]
             },
             "MI-YOCircuito": {
@@ -403,6 +813,44 @@
                             "z": -15.62
                         }
                     }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "EnredoNeuronas",
+                        "Label": "Enredo de Neuronas",
+                        "Posicion": {
+                            "x": 6.05,
+                            "y": 0,
+                            "z": -14.81
+                        }
+                    },
+                    {
+                        "Nombre": "CircuitoCardiaco",
+                        "Label": "Circuito Cardiaco",
+                        "Posicion": {
+                            "x": 15.07,
+                            "y": 0,
+                            "z": 5.35
+                        }
+                    },
+                    {
+                        "Nombre": "LocuraADN",
+                        "Label": "La locura del ADN",
+                        "Posicion": {
+                            "x": -14.71,
+                            "y": -4,
+                            "z": 6.28
+                        }
+                    },
+                    {
+                        "Nombre": "Daltonismo",
+                        "Label": "Daltonismo",
+                        "Posicion": {
+                            "x": -10.94,
+                            "y": 0,
+                            "z": -11.67
+                        }
+                    }
                 ]
             },
             "MI-YONeuronas": {
@@ -416,6 +864,26 @@
                             "x": -16,
                             "y": 0,
                             "z": 0
+                        }
+                    }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "EnredoNeuronas",
+                        "Label": "Enredo de Neuronas",
+                        "Posicion": {
+                            "x": -6.56,
+                            "y": 0,
+                            "z": 14.59
+                        }
+                    },
+                    {
+                        "Nombre": "Daltonismo",
+                        "Label": "Daltonismo",
+                        "Posicion": {
+                            "x": -10.94,
+                            "y": 0,
+                            "z": -11.67
                         }
                     }
                 ]
