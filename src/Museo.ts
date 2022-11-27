@@ -132,7 +132,7 @@ export class Museo implements ICuartoEventListener {
     this.scene.add(this.skydome);
 
     //Le pasamos la seccion y el cuarto que vamos a instanciar
-    this.setScene("MI-YO", "MI-YONeuronas");
+    this.setScene("FisicaYAstronomia", "FisicaYAStronomiaZonaOptica2");
 
     //Inicio de controladores
     var controls = new OrbitControls(this.camera, this.renderer.domElement);

@@ -950,6 +950,26 @@
                             "z": -10.64
                         }
                     }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "CampoMagnetico",
+                        "Label": "Campo Magnetico",
+                        "Posicion": {
+                            "x": 7.96,
+                            "y": -2,
+                            "z": 13.87
+                        }
+                    },
+                    {
+                        "Nombre": "BobinaTesla",
+                        "Label": "Bobina de Tesla",
+                        "Posicion": {
+                            "x": 2.1,
+                            "y": 0,
+                            "z": -15.86
+                        }
+                    }
                 ]
             },
             "FisicaYAstronomiaZonaElectricidad2": {
@@ -973,6 +993,44 @@
                             "x": 4.22,
                             "y": 0,
                             "z": 15.43
+                        }
+                    }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "BobinaTesla",
+                        "Label": "Bobina de Tesla",
+                        "Posicion": {
+                            "x": 15.93,
+                            "y": 0,
+                            "z": 1.42
+                        }
+                    },
+                    {
+                        "Nombre": "Radiometro",
+                        "Label": "Radiometro",
+                        "Posicion": {
+                            "x": 4.2,
+                            "y": 0,
+                            "z": -15.43
+                        }
+                    },
+                    {
+                        "Nombre": "Pulsometro",
+                        "Label": "Pulsómetro",
+                        "Posicion": {
+                            "x": -15.55,
+                            "y": 0,
+                            "z": -3.27
+                        }
+                    },
+                    {
+                        "Nombre": "EscalaJacob",
+                        "Label": "Escala de Jacob",
+                        "Posicion": {
+                            "x": -7.22,
+                            "y": 0,
+                            "z": 14.27
                         }
                     }
                 ]
@@ -1025,6 +1083,17 @@
                             "z": 15.75
                         }
                     }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "TabalEquilibrio",
+                        "Label": "Tabla de equilibrio",
+                        "Posicion": {
+                            "x": -16,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
                 ]
             },
             "FisicaYAStronomiaZonaOptica": {
@@ -1050,6 +1119,44 @@
                             "z": 15.28
                         }
                     }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "Orbitas",
+                        "Label": "Órbitas",
+                        "Posicion": {
+                            "x": 12.7,
+                            "y": -4,
+                            "z": 9.72
+                        }
+                    },
+                    {
+                        "Nombre": "EspejoInfinito",
+                        "Label": "Espejo Infinito",
+                        "Posicion": {
+                            "x": 12.53,
+                            "y": -0,
+                            "z": -9.93
+                        }
+                    },
+                    {
+                        "Nombre": "?",
+                        "Label": "?",
+                        "Posicion": {
+                            "x": -15.89,
+                            "y": -0,
+                            "z": -1.81
+                        }
+                    },
+                    {
+                        "Nombre": "RompecabezasOptico",
+                        "Label": "Rompecabezas Óptico",
+                        "Posicion": {
+                            "x": -10.22,
+                            "y": -0,
+                            "z": 12.3
+                        }
+                    }
                 ]
             },
             "FisicaYAStronomiaZonaOptica2": {
@@ -1073,6 +1180,35 @@
                             "x": 11.31,
                             "y": 0,
                             "z": 11.31
+                        }
+                    }
+                ],
+                "Exposiciones":[
+                    {
+                        "Nombre": "Orbitas",
+                        "Label": "Órbitas",
+                        "Posicion": {
+                            "x": 2.98,
+                            "y": -3,
+                            "z": -15.71
+                        }
+                    },
+                    {
+                        "Nombre": "RompecabezasOptico",
+                        "Label": "Rompecabezas Óptico",
+                        "Posicion": {
+                            "x": -15.17,
+                            "y": 0,
+                            "z": -5.05
+                        }
+                    },
+                    {
+                        "Nombre": "RompecabezasOptico",
+                        "Label": "Rompecabezas Óptico",
+                        "Posicion": {
+                            "x": -7.37,
+                            "y": 0,
+                            "z": 14.19
                         }
                     }
                 ]
